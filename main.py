@@ -34,5 +34,3 @@ def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
 
 
 
-
-
