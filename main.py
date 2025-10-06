@@ -15,7 +15,7 @@ def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
             text[j + length] == text[i + length]):
         length += 1
 
-      if length > match_length or (length == match_length and i - j < match_offset):
+      if length >= match_length:
         match_length = length
         match_offset = i - j
 
@@ -31,4 +31,3 @@ def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
     i += match_length + 1
 
   return compressed
-
