@@ -1,3 +1,4 @@
+
 def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
   compressed = []
   i = 0
@@ -31,18 +32,24 @@ def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
 
   return compressed
 
-def LZ77_Decompress(comrpressed):
+
+def lz77_decompress(comrpressed):
   decompressed = ""
-  for offset, lenght, nxt_symbol in comrpressed :
-    if offset == 0 and lenght == 0 :
-      if nxt_symbol != "NULL" :
-        decompressed+=nxt_symbol
-    else :
+
+  for offset, length, next_symbol in comrpressed:
+    # Case: no match found
+    if offset == 0 and length == 0:
+      if next_symbol != "NULL":
+        decompressed += next_symbol
+
+    else:
+      # Copy matching substring from previous data
       start = len(decompressed) - offset
-      for i in range(lenght) :
+      for i in range(length):
           decompressed+=decompressed[start + i]
-      if nxt_symbol != "NULL" :
-          decompressed+=nxt_symbol
+
+      # Add the next symbol after the match
+      if next_symbol != "NULL":
+          decompressed += next_symbol
 
   return decompressed
-
