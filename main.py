@@ -32,15 +32,17 @@ def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
   return compressed
 
 def LZ77_Decompress(comrpressed):
-  decompressed = []
-  for offset, len, nxt_symbol in comrpressed :
-    if offset == 0 and len == 0 :
+  decompressed = ""
+  for offset, lenght, nxt_symbol in comrpressed :
+    if offset == 0 and lenght == 0 :
       if nxt_symbol != "NULL" :
-        decompressed.append(nxt_symbol)
+        decompressed+=nxt_symbol
     else :
       start = len(decompressed) - offset
-      for i in range(len) :
-          decompressed.append(decompressed[start + i])
+      for i in range(lenght) :
+          decompressed+=decompressed[start + i]
+      if nxt_symbol != "NULL" :
+          decompressed+=nxt_symbol
 
   return decompressed
 
