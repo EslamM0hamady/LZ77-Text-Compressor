@@ -35,6 +35,28 @@ def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
   return compressed
 
 
+def lz77_decompress(comrpressed):
+  decompressed = ""
+
+  for offset, length, next_symbol in comrpressed:
+    # Case: no match found
+    if offset == 0 and length == 0:
+      if next_symbol != "NULL":
+        decompressed += next_symbol
+
+    else:
+      # Copy matching substring from previous data
+      start = len(decompressed) - offset
+      for i in range(length):
+          decompressed+=decompressed[start + i]
+
+      # Add the next symbol after the match
+      if next_symbol != "NULL":
+          decompressed += next_symbol
+
+  return decompressed
+
+
 def show_menu():
   # Display the main program menu
   print("====================================")
@@ -86,3 +108,4 @@ def main():
 # Entry point of the program
 if __name__ == "__main__":
   main()
+
