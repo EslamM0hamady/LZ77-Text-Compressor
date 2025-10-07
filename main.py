@@ -35,10 +35,10 @@ def lz77_compress(text, search_buffer_size=31, lookahead_buffer_size=15):
   return compressed
 
 
-def lz77_decompress(comrpressed):
+def lz77_decompress(compressed):
   decompressed = ""
 
-  for offset, length, next_symbol in comrpressed:
+  for offset, length, next_symbol in compressed:
     # Case: no match found
     if offset == 0 and length == 0:
       if next_symbol != "NULL":
@@ -95,7 +95,8 @@ def main():
         offset, length, next_symbol = input().split()
         tags.append((int(offset), int(length), next_symbol))
       
-      print(tags)
+      decompressed_data  = lz77_decompress(tags)
+      print(f"Decompressed data: {decompressed_data}\n")
 
     elif choice == 3:
       print("\nExiting program. Goodbye!")
