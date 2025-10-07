@@ -14,3 +14,11 @@ It allows users to compress and decompress text data using an interactive comman
 - 🧮 Customizable search buffer and lookahead buffer sizes
 
 - 💡 Simple menu-based interface for user interaction
+
+---
+
+## 👨‍💻 Authors
+
+- Eslam Mohamady
+
+- Mahmoud Hosni
