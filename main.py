@@ -88,11 +88,13 @@ def main():
     elif choice == 2:
       # Collect tags for decompression
       number_of_tags = int(input("Please enter number of tags: "))
-      print("Enter offset, length, and next symbol (separated by space): ")
+      print("Enter offset, length, and next symbol (separated by space). Type the word 'space' for space: ")
       tags = []
 
       for i in range(number_of_tags):
         offset, length, next_symbol = input().split()
+        if next_symbol.lower() == "space":
+          next_symbol = " "
         tags.append((int(offset), int(length), next_symbol))
       
       decompressed_data  = lz77_decompress(tags)
